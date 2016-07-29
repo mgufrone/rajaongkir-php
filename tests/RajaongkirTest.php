@@ -69,8 +69,6 @@ class RajaongkirTest extends \PHPUnit_Framework_TestCase{
     $provinces = Cost::get(['city'=>'10'],['city'=>'100'],1000,'pos');
     $request = Rajaongkir::getInstance()->getRequest();
     $this->assertEquals("/starter/cost", $request->getUri()->getPath());
-    // print_r($request->getBody()->getContents());
-    // $this->assertEquals("id=10",$request->getBody()->getQuery());
     $this->assertEquals('9613a54cd1a6e83cadaba3932f8ec1d6', $request->getHeader("key")[0]);
   }
 }
