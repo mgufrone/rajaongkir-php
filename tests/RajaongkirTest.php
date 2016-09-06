@@ -3,6 +3,7 @@ use Gufy\Rajaongkir\Rajaongkir;
 use Gufy\Rajaongkir\Province;
 use Gufy\Rajaongkir\City;
 use Gufy\Rajaongkir\Cost;
+use Gufy\Rajaongkir\Waybill;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
@@ -69,6 +70,14 @@ class RajaongkirTest extends \PHPUnit_Framework_TestCase{
     $provinces = Cost::get(['city'=>'10'],['city'=>'100'],1000,'pos');
     $request = Rajaongkir::getInstance()->getRequest();
     $this->assertEquals("/starter/cost", $request->getUri()->getPath());
+    $this->assertEquals('9613a54cd1a6e83cadaba3932f8ec1d6', $request->getHeader("key")[0]);
+  }
+  public function testGetWaybill(){
+    Rajaongkir::init('9613a54cd1a6e83cadaba3932f8ec1d6', 'basic');
+    $provinces = Waybill::find('jne', 'SUB102380913130298');
+    $request = Rajaongkir::getInstance()->getRequest();
+    $this->assertEquals("/basic/waybill", $request->getUri()->getPath());
+    $this->assertEquals("courier=jne&waybill=SUB102380913130298", (string)$request->getBody());
     $this->assertEquals('9613a54cd1a6e83cadaba3932f8ec1d6', $request->getHeader("key")[0]);
   }
 }
