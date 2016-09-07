@@ -14,6 +14,7 @@ use Gufy\Rajaongkir\Rajaongkir;
 use Gufy\Rajaongkir\Province;
 use Gufy\Rajaongkir\City;
 use Gufy\Rajaongkir\Cost;
+use Gufy\Rajaongkir\Waybill;
 // initialize api. first argument will be your api key, and the second one is your package
 Rajaongkir::init('your-api-key', 'starter');
 
@@ -28,4 +29,7 @@ $cities = City::all($province_id);
 
 // get cost
 $cost = Cost::get(['city'=>$origin_city_id], ['city'=>$destination_city], $weight, 'jne');
+
+// get waybill
+$cost = Waybill::find('jne', 'your-waybill');
 ```
